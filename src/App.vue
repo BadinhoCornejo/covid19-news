@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @filterNews="filterNews" />
-    <NewsContainer :searchValue="searchValue" :newsSource="sortNews()" />
+    <NewsContainer :searchValue="searchValue" :news="sortNews()" />
   </div>
 </template>
 

@@ -19,24 +19,21 @@ export default {
   },
   props: {
     searchValue: String,
-    newsSource: Array
+    news: Array
   },
   data() {
     return {
-      news: []
+      newsBackUp: []
     };
   },
   watch: {
     searchValue() {
       this.filterNews();
-    },
-    newsSource() {
-      this.news = this.newsSource;
     }
   },
   methods: {
     filterNews() {
-      this.news = this.newsSource.filter(
+      this.news.filter(
         article =>
           article.title
             .toLowerCase()
