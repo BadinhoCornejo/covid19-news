@@ -122,6 +122,6 @@ export default {
   margin-top: 3rem;
 }
 .not-found-image {
-  margin-bottom: 16px;
+  margin-top: 16px;
 }
 </style>
