@@ -5,12 +5,12 @@
     <NewsContainer v-else-if="newsBackUp.length" :news="newsBackUp" />
     <div class="not-found" v-if="searchValue !== '' && !newsBackUp.length">
       <div class="not-found-content">
+        No encontramos resultados para "{{searchValue}}"
         <img
           class="not-found-image"
           src="./assets/svg/support-notes-monochrome-400px.png"
           alt="suport"
         />
-        No encontramos resultados para "{{searchValue}}"
       </div>
     </div>
   </div>
