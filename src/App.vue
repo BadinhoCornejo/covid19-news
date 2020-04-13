@@ -1,7 +1,18 @@
 <template>
   <div id="app">
     <Header @filterNews="filterNews" />
-    <NewsContainer :searchValue="searchValue" :news="sortNews()" />
+    <NewsContainer v-if="searchValue === ''" :news="sortNews()" />
+    <NewsContainer v-else-if="newsBackUp.length" :news="newsBackUp" />
+    <div class="not-found" v-if="searchValue !== '' && !newsBackUp.length">
+      <div class="not-found-content">
+        <img
+          class="not-found-image"
+          src="./assets/svg/support-notes-monochrome-400px.png"
+          alt="suport"
+        />
+        No encontramos resultados para "{{searchValue}}"
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,18 +39,30 @@ export default {
   data() {
     return {
       searchValue: "",
-      articles: []
+      articles: [],
+      newsBackUp: []
     };
   },
   methods: {
     filterNews(value) {
       this.searchValue = value;
+
+      this.newsBackUp = this.articles.filter(
+        article =>
+          article.title
+            .toLowerCase()
+            .includes(this.searchValue.toLowerCase()) ||
+          article.source.name
+            .toLowerCase()
+            .includes(this.searchValue.toLowerCase())
+      );
     },
     sortNews() {
       const newsLength = this.articles.length;
       const sortedNews = [];
       var floors = [];
 
+      //Ordenando aleatoriamente
       for (let i = 0; i < newsLength; i++) {
         const randomIndex = getRandom(floors, newsLength);
 
@@ -48,6 +71,7 @@ export default {
         sortedNews.push(this.articles[randomIndex]);
       }
 
+      //Ordenando por fecha
       sortedNews.sort(
         (after, before) =>
           new Date(before.publishedAt) - new Date(after.publishedAt)
@@ -86,5 +110,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-content {
+  width: 400px;
+  margin-top: 3rem;
+}
+.not-found-image {
+  margin-bottom: 16px;
 }
 </style>

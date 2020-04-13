@@ -18,31 +18,7 @@ export default {
     NewsCard
   },
   props: {
-    searchValue: String,
     news: Array
-  },
-  data() {
-    return {
-      newsBackUp: []
-    };
-  },
-  watch: {
-    searchValue() {
-      this.filterNews();
-    }
-  },
-  methods: {
-    filterNews() {
-      this.news.filter(
-        article =>
-          article.title
-            .toLowerCase()
-            .includes(this.searchValue.toLowerCase()) ||
-          article.source.name
-            .toLowerCase()
-            .includes(this.searchValue.toLowerCase())
-      );
-    }
   }
 };
 </script>
