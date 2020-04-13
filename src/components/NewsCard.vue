@@ -60,9 +60,10 @@ export default {
 
 <style>
 .md-card {
-  width: 500px;
+  width: 380px;
   margin: 4px;
 }
+
 img.avatar {
   width: auto;
   height: auto;
@@ -86,9 +87,8 @@ img.avatar {
   line-height: 1.5 !important;
 }
 .md-subhead {
-  max-width: 100% !important;
   text-align: initial;
-  font-size: 12px !important;
+  font-size: 11px !important;
   display: inline-flex;
 }
 .md-card-content {

@@ -11,7 +11,7 @@
           <md-field>
             <md-icon>search</md-icon>
             <label>Buscar</label>
-            <md-input></md-input>
+            <md-input v-model="searchValue" @keyup="filterNews"></md-input>
           </md-field>
         </div>
         <div class="md-layout-item"></div>
@@ -19,6 +19,22 @@
     </md-content>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Header",
+  data() {
+    return {
+      searchValue: ""
+    };
+  },
+  methods: {
+    filterNews() {
+      this.$emit("filterNews", this.searchValue);
+    }
+  }
+};
+</script>
 
 <style>
 .navbar {
@@ -33,5 +49,9 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  font-size: 12px;
+  line-height: 1;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 </style>
